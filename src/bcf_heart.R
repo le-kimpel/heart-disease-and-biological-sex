@@ -33,7 +33,7 @@ tau = (0.5*(x[,3] > -3/4) + 0.25*(x[,3] > 0) + 0.25*(x[,3]>3/4))
 mu = (q + tau*z)
 
 # set the noise level relative to the expected mean function of Y
-sigma = diff(range(q + tau*pi))/8
+sigma = sd(q + tau*pi)
 
 # draw the response variable with additive error!
 y = mu + sigma*rnorm(n)
@@ -44,3 +44,4 @@ bcf_fit = bcf(y, z, x, x, pihat, nburn=2000, nsim=2000)
 tau_post = bcf_fit$tau
 tauhat = colMeans(tau_post)
 plot(tau, tauhat); abline(0,1)
+
