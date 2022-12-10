@@ -28,7 +28,7 @@ print(x)
 q = -1*(x[,1]>(x[,2])) + 1*(x[,1]<(x[,2]))
 
 # tau is the true (homogeneous) treatment effect
-tau = (0.5*(x[,3] > -3/4) + 0.25*(x[,3] > 0) + 0.25*(x[,3]>3/4))
+tau = (0.5*(x[,5] > -3/4) + 0.25*(x[,5] > 0) + 0.25*(x[,5]>3/4))
 
 # generate the response using q, tau and z
 mu = (q + tau*z)
