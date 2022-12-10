@@ -17,13 +17,14 @@ z = df$sex
 x1 = df$target 
 x2 = df$chol 
 x3 = df$thal
+x4 = df$trestbps
+x5 = df$age
 
-x = cbind(x1, x2, x3)
+x = cbind(x1, x2, x3, x4, x5)
+print(x)
 
-# estimate pi
-pihat = pnorm(q)
-
-# create targeted selection
+# create targeted selection: this will determine how aggressive our fit is
+# in general, the larger the value of q, the tighter the fit.
 q = -1*(x[,1]>(x[,2])) + 1*(x[,1]<(x[,2]))
 
 # tau is the true (homogeneous) treatment effect
@@ -33,15 +34,14 @@ tau = (0.5*(x[,3] > -3/4) + 0.25*(x[,3] > 0) + 0.25*(x[,3]>3/4))
 mu = (q + tau*z)
 
 # set the noise level relative to the expected mean function of Y
-sigma = sd(q + tau*pi)
+sigma = 2*sd(q + tau)
 
 # draw the response variable with additive error!
 y = mu + sigma*rnorm(n)
 
-bcf_fit = bcf(y, z, x, x, pihat, nburn=2000, nsim=2000)
+bcf_fit = bcf(y, z, x, x, pihat, include_pi="control", nburn=2000, nsim=2000)
 
 # Get posterior of treatment effects
 tau_post = bcf_fit$tau
 tauhat = colMeans(tau_post)
 plot(tau, tauhat); abline(0,1)
-
