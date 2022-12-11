@@ -48,11 +48,8 @@ bcf_fit = bcf(y, z, x, x, pihat, include_pi="control", nburn=500, nsim=500)
 tau_post = bcf_fit$tau
 tauhat = colMeans(tau_post)
 
-print(tau)
-
 # generating plots 
 plot(tau , tauhat); abline(0,1)
-h1 <- hist(tauhat)
+#h1 <- hist(tauhat)
 #h2 <- hist(tau)
-plot(h1, col="lightblue")
-#plot(h2, col="red", add=TRUE)
+#plot(h1, col="lightblue")
