@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # silly script for getting hands dirty with some of the physical aspects of this data
-with open('heart.csv', mode='r') as csv_file:
+with open('../data/heart.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     line_count = 0
     for row in csv_reader:
@@ -18,7 +18,7 @@ with open('heart.csv', mode='r') as csv_file:
 # first let's try and average age and gender across this dataset
 # pretty simple
 
-df = pd.read_csv("heart.csv")
+df = pd.read_csv("../data/heart.csv")
 
 sexcol = df["sex"]
 agecol = df["age"]
@@ -89,8 +89,8 @@ for i in range(1,1025):
 
 
 
-print("Avg age female: "  + str(float(age_f)/float(1025)))
-print("Avg age male: "  + str(float(age_m)/float(1025)))
+print("Avg age female: "  + str(float(age_f)/float(num_female)))
+print("Avg age male: "  + str(float(age_m)/float(num_male)))
 
 
 print("Avg bp female: " + str(sum(womenbpdata)/len(womenbpdata)))
@@ -109,7 +109,7 @@ print("Avg cholesterol male: " + str(sum(mencholdata)/len(mencholdata)))
       
 # plot the distribution of sex and some of the hd data...
 # such as age and serum cholesterol levels. 
-
+'''
 df.plot(kind='scatter',x = "chol", y = "age")
 plt.title("Cholesterol Level versus Age (Mixed Gender)")
 plt.xlabel("Serum cholesterol level (mg/l)")
@@ -170,10 +170,10 @@ plt.xlabel("Serum cholesterol level (mg/l)")
 plt.show()
 
 
-plt.scatter(womenpaindata, womencholdata)
-plt.title("Cholesterol Level versus Chest Pain Severity (Female)")
-plt.xlabel("Serum cholesterol level (mg/l)")
-plt.ylabel("Pain Level (0-3)")
+plt.hist(womenpaindata, 10)
+plt.title("Chest Pain Severity (Female)")
+plt.ylabel("Number of Respondents")
+plt.xlabel("Pain Level (0-3)")
 plt.show()
 
 plt.scatter(womencholdata, womenbpdata)
@@ -184,10 +184,10 @@ plt.xlabel("Serum cholesterol level (mg/l)")
 plt.show()
 
 
-plt.scatter(mencholdata, menpaindata)
-plt.title("Cholesterol Level versus Chest Pain Severity (Male)")
-plt.xlabel("Serum cholesterol level (mg/l)")
-plt.ylabel("Pain Level (0-3)")
+plt.hist(menpaindata, 10)
+plt.title("Chest Pain Severity (Male)")
+plt.ylabel("Number of Respondents")
+plt.xlabel("Pain Level (0-3)")
 plt.show()
 
 plt.scatter(mencholdata, menbpdata)
@@ -195,3 +195,4 @@ plt.title("Cholesterol Level versus Blood Pressure (Male)")
 plt.ylabel("Resting Blood Pressure (mm/Hg)")
 plt.xlabel("Serum cholesterol level (mg/l)")
 plt.show()
+'''
