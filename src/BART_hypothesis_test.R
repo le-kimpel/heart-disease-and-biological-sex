@@ -19,9 +19,12 @@ x6 = df$cp
 
 y = cbind(x1, x2, x3, x4, x5, x6)
 
-#build BART regression model and get the hypothesized effect of X on each of the y_i
+##regression example
+
+##build BART regression model
+
 for(i in 0:len(y)){
-  bart_machine = bartMachine(X,y[i])
+  bart_machine = bartMachine(bartMachine(X,y[i], num_trees = 200, num_burn_in = 500,
+                                         num_iterations_after_burn_in = 1000))
   cov_importance_test(bart_machine, covariates = c(1))
 }
-
