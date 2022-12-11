@@ -1,4 +1,4 @@
-# heart-disease-and-gender
+# heart-disease-and-biological-sex
 A final project repository for ENG 625.725 (Theory of Statistics I) at Johns Hopkins University. 
 
 ## About 
