@@ -17,14 +17,43 @@ x4 = df$age
 x5 = df$trestbps
 x6 = df$cp
 
-y = cbind(x1, x2, x3, x4, x5, x6)
-
 ##regression example
 
 ##build BART regression model
 
-for(i in 0:len(y)){
-  bart_machine = bartMachine(bartMachine(X,y[i], num_trees = 200, num_burn_in = 500,
-                                         num_iterations_after_burn_in = 1000))
-  cov_importance_test(bart_machine, covariates = c(1))
-}
+'''
+Ugly, but I chose to build several different BartMachines for each of the various categories.
+
+bart_machine1 = bartMachine(X,x1, num_trees = 200, num_burn_in = 500,
+                           num_iterations_after_burn_in = 1000)
+
+cov_importance_test(bart_machine1, covariates = c(1))
+
+
+bart_machine2 = bartMachine(X,x2, num_trees = 200, num_burn_in = 500,
+                           num_iterations_after_burn_in = 1000)
+
+cov_importance_test(bart_machine2, covariates = c(1))
+
+
+bart_machine3 = bartMachine(X,x3, num_trees = 200, num_burn_in = 500,
+                           num_iterations_after_burn_in = 1000)
+
+cov_importance_test(bart_machine3, covariates = c(1))
+
+
+bart_machine4 = bartMachine(X,x4, num_trees = 200, num_burn_in = 500,
+                           num_iterations_after_burn_in = 1000)
+
+cov_importance_test(bart_machine4, covariates = c(1))
+
+bart_machine5 = bartMachine(X,x5, num_trees = 200, num_burn_in = 500,
+                           num_iterations_after_burn_in = 1000)
+
+cov_importance_test(bart_machine5, covariates = c(1))
+
+bart_machine6 = bartMachine(X,x6, num_trees = 200, num_burn_in = 500,
+                           num_iterations_after_burn_in = 1000)
+
+cov_importance_test(bart_machine6, covariates = c(1))
+'''
